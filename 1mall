@@ -1,0 +1,198 @@
+from pyzt import inputi,inputs
+import subprocess
+s=[]
+manager_user='azatai'
+manager_pwd='manager'
+staff_user='aistaff'
+staff_pwd='staff'
+client_user='x'
+client_pwd='z'
+def staff():
+    while True:
+        print('1-списокке жаңа тауар қосу, 2-бағаларын өзгерту,3-барлық тауарлaрды көру,0-шығу:')
+        tandau = inputi('Таңдаңыз'.center(40,'-'))
+        if tandau == 1:
+            while True:
+                n=[]
+                with open('1mall.txt', 'r') as fi:
+                    data=fi.read()
+                    data_split=data.split('\n')
+                    for i in data_split:
+                        i2=i.split('-')
+                        n.append(tuple(i2))
+                n.pop()
+                for index,item in enumerate(n):
+                    print(index,item)
+                product = inputs('Қандай продукты енгізгіңіз келеді? Атын енгізіңіз:')
+                price = inputi('Продуктының бағасы:')
+                n.append(tuple([product, price]))
+                with open('1mall.txt', 'w') as fil:
+                    for item in n:
+                        fil.write(str(item[0])+'-'+str(item[1]) + '\n')
+                surak = inputs("Тізімге жаңа продукт енгізесіз бе? ok -жалғастыру үшін, q -тоқтату үшін :")
+                if surak == 'q':
+                    break
+                elif surak == 'ok':
+                    pass
+                else:
+                    print('Kaita engiz!')
+        elif tandau == 2:
+
+            while True:
+                n1 = []
+                with open('1mall.txt', 'r') as fi7:
+                    data = fi7.read()
+                    data_split = data.split('\n')
+                    for i in data_split:
+                        i3 = i.split('-')
+                        n1.append(tuple(i3))
+                n1.pop()
+                for index, item in enumerate(n1):
+                    print(index, item)
+                surak = inputs("Өзгерту үшін-ok , тоқтау үшін -q: :")
+                if surak == 'ok':
+                    prod_index = inputi('Қай продуктыны өзгерткіңіз келeді?: ')
+                    if prod_index < len(n1) and prod_index >= 0:
+                        prod_item =list(n1[prod_index])
+                        print(prod_item[0],end=' ')
+                        change_price = inputi('Продуктың жаңа бағасы:')
+                        prod_item.insert(1,change_price)
+                        prod_item.pop()
+                        n1.insert(prod_index,tuple(prod_item))
+                        n1.pop(prod_index+1)
+                        with open('1mall.txt','w') as d4:
+                            for item in n1:
+                                d4.write(str(item[0]) + '-' + str(item[1]) + '\n')
+                    else:
+                        print(f" {prod_index} -Өкінішке орай сіз қателестіңіз, бұндай продукт жоқ! ")
+                elif surak == 'q':
+                    break
+        elif tandau == 3:
+            print('Продукты тізімі:')
+            with open('1mall.txt','r') as f1:
+                print(f1.read())
+        elif tandau==0:
+            break
+        else:
+            print('Қайта таңдаңыз!!!')
+
+def manager():
+    while True:
+        print('1-барлық продукты тізімін көру,2-тізімнен продуктыны өшіру, 3-сатылған продуктылардың тізімін көру, 4-табыс, 0-шығу:')
+        tandau = inputi('Tandanyz'.center(40,'-'))
+        if tandau == 1:
+            with open('1mall.txt','r') as f:
+                print(f.read())
+        elif tandau==2:
+            while True:
+                n2 = []
+                with open('1mall.txt', 'r') as fi8:
+                    data = fi8.read()
+                    data_split = data.split('\n')
+                    for i in data_split:
+                        i3 = i.split('-')
+                        n2.append(tuple(i3))
+                n2.pop()
+                for index, item in enumerate(n2):
+                    print(index, item)
+                engiz=inputs('Жалғастыру үшін-ok , тоқтау үшін -q: ')
+                if engiz=='ok':
+                    tandau1=inputi('Тізімдегі қай продуктыны өшіресіз? ')
+                    if tandau1>=0 and tandau1<len(n2):
+                        n2.remove(n2[tandau1])
+                        with open('1mall.txt','w') as d5:
+                            for i in n2:
+                                d5.write(i[0]+'-'+i[1]+'\n')
+                    else:
+                        print('Бұндай продукты тізімде жоқ!')
+                elif engiz=='q':
+                    break
+        elif tandau==3:
+            with open('zakaz.txt','r') as z:
+                print(z.read())
+
+        elif tandau==0:
+            break
+        else:
+            print('Қайта енгіз')
+sum=0
+def client():
+    global sum
+    shopping_list=[]
+    name=inputs('Сәлеметсіз бе?Атыңызды жазыңыз: ')
+    print(f'{name.capitalize()} қош келдіңіз!!!')
+    surau = inputi('Сіздің жалақыңыз қанша?: ')
+    zhalaky=surau
+    while True:
+        surau1=inputs("Онлайн шоппингті жалғастыру -'ok', тоқтату-'q' ")
+        if surau1=='ok':
+            print('Бізде бар продуктылар тізімі: ')
+            n2 = []
+            with open('1mall.txt', 'r') as fi8:
+                data = fi8.read()
+                data_split = data.split('\n')
+                for i in data_split:
+                    i3 = i.split('-')
+                    n2.append(tuple(i3))
+            n2.pop()
+            for index, item in enumerate(n2):
+                print(index, item)
+            surau3=inputi("Қай продуктыны сатып алғыңыз келеді? ")
+            if surau3<len(n2) and surau3>=0:
+                p_item=list(n2[surau3])
+                p_int=int(p_item[1])
+                if p_int<=surau:
+                    shopping_list.append(tuple(p_item))
+                    with open('clients.txt', 'r') as client_vip:
+                        a = client_vip.read()
+                    if name in a:
+                        print('Сіз VIP клинтсіз, осы таңдалған тауарға -15% Скидка болады!!!')
+                        sum1= p_int-p_int* 0.15
+                        surau-=sum1
+                    else:
+                        sum+=p_int
+                        surau-=p_int
+                    print(f'Сіз таңдаған продукты жәшікке салынды, сіздің қазіргі балансыңыз {surau}')
+                    timenow=subprocess.check_output(['date']).decode()
+                    with open('zakaz.txt','a') as file:
+                            file.write(str(p_item[0])+'-'+str(p_item[1])+'-'+timenow)
+                    if sum >= 200000:
+                        with open('clients.txt', 'a') as client_file:
+                            if name not in a:
+                                client_file.write(name + '\n')
+                            else:
+                                pass
+                else:
+                    print('Кешіріңіз, бірақ сіздің балансыңыз жетпейді!!!')
+            else:
+                print(f"Бізде {surau3}-бұл продукт жоқ,  кешіріңіз... ")
+        elif surau1=='q':
+            if sum>0:
+                ch=set()
+                print('1mall онлайн магазин')
+                print(''.center(30,'-'))
+                timenow=subprocess.check_output(['date']).decode()
+                print(timenow)
+                for i in shopping_list:
+                    sd=(i,shopping_list.count(i))
+                    ch.add(sd)
+                for each in ch:
+                    print(each)
+                print(''.center(30,'-'))
+                print(f"ИТОГ         ={zhalaky-surau}")
+                print('Сатып алғаныңыз үшін рахмет!')
+                break
+            else:
+                break
+while True:
+    usr=inputs('plz input your login: ')
+    pwds=inputs('plz input your password: ')
+    if usr==staff_user and pwds==staff_pwd:
+        staff()
+    elif usr==manager_user and pwds==manager_pwd:
+        manager()
+    elif usr==client_user and pwds==client_pwd:
+        client()
+        break
+    else:
+        print('Invalid account!!!')

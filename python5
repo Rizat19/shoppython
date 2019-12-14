@@ -1,0 +1,143 @@
+#1zholy
+f=open('ri','r',encoding='utf-8')
+for line in f:
+    if 'Kazakhstan' in line:
+        line=line.replace('Kazakhstan','Qazaqstan')
+f.close()
+f_new=open('ri','w',encoding='utf-8')
+f_new.write(line)
+f_new.close()
+
+
+with open('ri','r+',encoding='utf-8') as f:
+    for line in f:
+        if 'Kazakhstan' in line:
+            line=line.replace('Kazakhstan','Qazaqstan')
+        f.write(line)
+
+# a='Қ'
+# b='Q'
+# string='Қазақ'
+# string_new=string.replace(a,b)#''
+# print(string_new)
+
+s=['Nur','Mei','Riz']
+del s[0]
+print(s)
+del(s[1])
+print(s)
+s.pop()
+print(s)
+s.append('Eldana')
+print(s)
+print(s.index('Eldana'))
+try:
+    print(s.index('Eld'))
+except ValueError:
+    pass
+finally:
+    print('This would be excuded finally')
+
+dhgsfbfiuejlrnbojawulbnҚазақстан менің отаным
+This is file 12`@!$#^%@!*^&^(&)_newld
+網站有中、英文版本，也有繁、簡體版，可通過每頁左
+
+
+
+
+
+
+-----------------------------------------------------------
+                                                              
+# f=open('ri','r',encoding='utf-8')                           
+# for line in f:                                              
+#     if 'Kazakhstan' in line:                                
+#         line=line.replace('Kazakhstan','Qazaqstan')         
+# f.close()                                                   
+# f_new=open('ri','w',encoding='utf-8')                       
+# f_new.write(line)                                           
+# f_new.close()                                               
+                                                              
+# with open('ri','w+',encoding='utf-8') as f:                 
+#     for line in f:                                          
+#         if 'Kazakhstan' in line:                            
+#             line=line.replace('Kazakhstan','Qazaqstan')     
+#         f.write('riirirf')                                  
+                                                              
+# b='Q'                                                       
+# string='Қазақ'                                              
+# c='қ'                                                       
+# d='q'                                                       
+# string_new=string.replace(a,b)#''                           
+# string_new2=string_new.replace(c,d)                         
+# print(string_new2)                                          
+                                                              
+                                                              
+                                                              
+# del s[0]                                                    
+# print(s)                                                    
+# del(s[1])                                                   
+# del s[0]                                                    
+# del(s[0])                                                   
+# print(s)                                                    
+# s.pop()                                                     
+# print(s)                                                    
+# s.append('Eldana')                                          
+# print(s)                                                    
+# print(s.index('Eldana'))                                    
+# try:                                                        
+#     print(s.index('Riz'))                                   
+# except ValueError:                                          
+#     pass                                                    
+# finally:                                                    
+#     print('This would be excuded finally')                  
+                                                              
+# s=['r','dsvds0','dfd','a']                                  
+# s.sort()                                                    
+# print(s)                                                    
+# s.reverse()                                                 
+# print(s)                                                    
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              
+                                                              
+#                                                             
+# s=['Nur','Meru','Eldana']                                   
+# s.append('Madi')                                            
+# if s.index('Maaaa') in s:                                   
+#          print('bar')                                       
+                                                              
+# try:                                                        
+#     if s.index('Maaaa') in s:                               
+#         print('bar')                                        
+# except ValueError:                                          
+#     pass                                                    
+# finally:                                                    
+#     print('ref')                                            
+                                                              
+                                                              
+# l=['Nurzhan','Bekzhan','Madi','Meiirzhan','Darkhan','Zhandos
+# l=[1,8,0,6,12,-17,80,9]                                     
+# l.sort()                                                    
+# l.reverse()                                                 
+# print(l)                                                    
+                                                              
+# with open('old.txt','r',encoding='utf-8') as f:             
+#     d=f.read()                                              
+#     d1=d.split()                                            
+#     d1.sort()                                               
+#     print(d1)                                               
+#     with open('ri','w') as f:                               
+#         for soz in d1:                                      
+#             f.write(soz+'\n')                               
+                                                              
+                                                              
+# with open('old.txt','w+',encoding='utf-8') as f:            
+#     f.read()                                                
+#     f.write('rizat')                                        
+#                                                             
+                                                              
